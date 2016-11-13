@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SportsStore.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Админка: Всё гавно";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Всё гавно</h1>
+
+<table class="Grid">
+    <tr>
+        <th>ИД</th>
+        <th>Название</th>
+        <th class="NumericCol">Чё стоит</th>
+        <th>Действие</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductID</td>
+            <td>@Html.ActionLink(item.Name, "Edit", new { item.ProductID })</td>
+            <td class="NumericCol">@item.Price.ToString("c")</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Admin"))
+                {
+                    @Html.Hidden("ProductID", item.ProductID)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<p>@Html.ActionLink("Добавить говна", "Create")</p>

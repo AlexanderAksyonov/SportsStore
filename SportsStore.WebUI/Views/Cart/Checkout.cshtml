@@ -1,0 +1,33 @@
+﻿@model SportsStore.Domain.Entities.ShippingDetails
+
+@{
+    ViewBag.Title = "Контроль";
+}
+
+<h2>Проверка</h2>
+Пожалуйста введите ваши данные, чтобы мы отправили Вам заказ
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <h3>Получатель</h3>
+    <div>Name @Html.EditorFor(x => x.Name)</div>
+    <h3>Адрес</h3>
+    <div>Line 1: @Html.EditorFor(x => x.Line1)</div>
+    <div>Line 2: @Html.EditorFor(x => x.Line2)</div>
+    <div>Line 3: @Html.EditorFor(x => x.Line3)</div>
+    
+    <div>Город: @Html.EditorFor(x => x.City)</div>
+    <div>Провинция: @Html.EditorFor(x => x.State)</div>
+    <div>Индекс: @Html.EditorFor(x => x.Zip)</div>
+    <div>Страна: @Html.EditorFor(x => x.Country)</div>
+    
+    <h3>Опции</h3>
+    <label>
+        @Html.EditorFor(x=>x.GiftWrap)
+        Отправить в качестве подарка
+    </label>
+    
+    <p align="center">
+        <input class="actionButtons" type="submit" value="Завершить заказ" />
+    </p>
+}
